@@ -131,6 +131,10 @@ h3 {
     .featurette-heading {
         font-size: 50px;
     }
+    .modal-dialog {
+        width: 450px;
+        margin: 75px auto;
+    }
 }
 
 @media (min-width: 992px) {

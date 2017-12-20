@@ -46,16 +46,14 @@
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Dashboard</a></li>
-                                <li><a href="#">Settings</a></li>
-                                <li><a href="#">Profile</a></li>
                                 <li>
-                                    <form class="navbar-form navbar-right">
+                                    <form class="navbar-form navbar-left">
                                         <input type="text" class="form-control" placeholder="輸入菜名...">
                                         <button type="submit" class="btn btn-info">站內搜尋</button>
                                     </form>
                                 </li>
-                                <li><a href="login.html" role="button" data-toggle="modal" data-target="#exampleModal">登入/註冊</a></li>
+                                <li><a href="enroll.html">會員註冊</a></li>
+                                <li><a role="button" data-toggle="modal" data-target="#exampleModal">會員登入</a></li>
                             </ul>
                         </div>
                     </div>
@@ -67,10 +65,10 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">登入</h4>
+                        <h4 class="modal-title" id="exampleModalLabel">歡迎回來！</h4>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="loginform">
                             <div class="form-group">
                                 <label for="text" class="control-label">帳號</label>
                                 <input type="text" class="form-control" id="recipient-name">
@@ -83,7 +81,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary">登入</button>
+                        <button type="button" class="btn btn-primary" form="loginform">登入</button>
                     </div>
                 </div>
             </div>
