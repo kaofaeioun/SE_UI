@@ -40,6 +40,7 @@ body {
 }
 
 .form-signin input[type="email"] {
+    margin-top: 20px;
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
