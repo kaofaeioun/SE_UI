@@ -74,21 +74,38 @@
                         <form id="loginform">
                             <div class="form-group">
                                 <label for="text" class="control-label">帳號</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control" id="login-name" required>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="control-label">密碼</label>
-                                <input type="password" class="form-control" id="password"></input>
+                                <input type="password" class="form-control" id="password" required>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary" form="loginform">登入</button>
+                        <button type="button" class="btn btn-primary" form="loginform" id="login_btn">登入</button>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            $(document).ready(function() {
+                $("#login_btn").click(function() {
+                    var loginurl = "http://140.115.87.204:8000/Demo/WhoamI/";
+                    var username = document.getElementById('login-name').value;
+                    var password = document.getElementById('password').value;
+                    $.post(loginurl, {
+                            uid: username,
+                            psw: password
+                        },
+                        function(data, status) {
+                            console.log(data);
+                            alert("Data:" + data + "\nstatus:" + status);
+                        });
+                });
+            });
+        </script>
         <!-- Marketing messaging and featurettes
     ================================================== -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
