@@ -13,23 +13,14 @@
 
     <!-- Custom styles for this template -->
     <link href="css/login.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="chrome-extension://ccbdoklfbpcifppcfahmmpmbkfdjjccm/js/injected.js"></script>
 </head>
 
 <body>
     <div class="container">
 
-        <form class="form-signin" method="POST" action="login.php">
+        <div class="form-signin">
             <a href="index.html"><img src="img/indexheader.jpg"></a>
             <label for="inputUsername" class="sr-only">Username</label>
             <input type="text" id="inputUsername" class="form-control" placeholder="帳號" required="" autofocus="">
@@ -38,51 +29,54 @@
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="密碼" required="">
             <label for="inputArea" class="sr-only">Area</label>
-            <select name="inputArea" placeholder="居住地區" class="form-control">
-                <option>臺北市</option>
-                <option>新北市</option>
-                <option>桃園市</option>
-                <option>臺中市</option>
-                <option>臺南市</option>
-                <option>高雄市</option>
-                <option>新竹縣</option>
-                <option>苗栗縣</option>
-                <option>彰化縣</option>
-                <option>南投縣</option>
-                <option>雲林縣</option>
-                <option>嘉義縣</option>
-                <option>屏東縣</option>
-                <option>宜蘭縣</option>
-                <option>花蓮縣</option>
-                <option>臺東縣</option>
-                <option>澎湖縣</option>
+            <select id="inputArea" placeholder="居住地區" class="form-control">
+                <option value="2">臺北市</option>
+                <option value="3">新北市</option>
+                <option value="4">基隆市</option>
+                <option value="5">桃園市</option>
+                <option value="6">新竹縣</option>
+                <option value="7">新竹市</option>
+                <option value="9">苗栗縣</option>
+                <option value="10">臺中市</option>
+                <option value="11">彰化縣</option>
+                <option value="12">南投縣</option>
+                <option value="14">雲林縣</option>
+                <option value="15">嘉義縣</option>
+                <option value="16">嘉義市</option>
+                <option value="17">臺南市</option>
+                <option value="18">高雄市</option>
+                <option value="19">屏東縣</option>
+                <option value="21">宜蘭縣</option>
+                <option value="22">花蓮縣</option>
+                <option value="23">臺東縣</option>
+                <option value="25">澎湖縣</option>
+                <option value="26">金門縣</option>
+                <option value="27">連江縣</option>
             </select>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">申請帳號</button>
-        </form>
+            <button class="btn btn-lg btn-primary btn-block" id="login_btn">申請帳號</button>
+        </div>
     </div>
     <script>
         $(document).ready(function() {
             $("#login_btn").click(function() {
-                var loginurl = "http://140.115.87.204:8000/Demo/WhoamI/";
+                var enrollurl = "http://140.115.87.204:8000/Demo/enroll/";
                 var username = document.getElementById('inputUsername').value;
                 var name = document.getElementById('inputName').value;
-                var password = document.getElementById('Password').value;
-                $.post(loginurl, {
+                var password = document.getElementById('inputPassword').value;
+                var area = document.getElementById('inputArea').value;
+                $.post(enrollurl, {
                         uid: username,
                         name: name,
                         psw: password,
+                        area: area
 
                     },
                     function(data, status) {
-                        console.log(data);
-                        if (data === "") {
+                        if (data === "[]") {
                             unescape(data);
-                            alert("帳號密碼錯誤")
-                        } else {
-                            unescape(data);
-                            var login = JSON.parse(data);
-                            console.log(login[0][1]);
-                        }
+                            alert("註冊成功");
+                            window.location.assign("index.html");
+                        } else {}
                     });
             });
         });
