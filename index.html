@@ -101,7 +101,14 @@
                         },
                         function(data, status) {
                             console.log(data);
-                            alert("Data:" + data + "\nstatus:" + status);
+                            if (data === "") {
+                                unescape(data);
+                                alert("帳號密碼錯誤")
+                            } else {
+                                unescape(data);
+                                var login = JSON.parse(data);
+                                console.log(login[0][1]);
+                            }
                         });
                 });
             });

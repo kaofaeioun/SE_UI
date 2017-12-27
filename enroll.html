@@ -31,18 +31,62 @@
 
         <form class="form-signin" method="POST" action="login.php">
             <a href="index.html"><img src="img/indexheader.jpg"></a>
-            <label for="inputEmail" class="sr-only">Email</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+            <label for="inputUsername" class="sr-only">Username</label>
+            <input type="text" id="inputUsername" class="form-control" placeholder="帳號" required="" autofocus="">
+            <label for="inputName" class="sr-only">Name</label>
+            <input type="text" id="inputName" class="form-control" placeholder="姓名" required="" autofocus="">
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-
+            <input type="password" id="inputPassword" class="form-control" placeholder="密碼" required="">
+            <label for="inputArea" class="sr-only">Area</label>
+            <select name="inputArea" placeholder="居住地區" class="form-control">
+                <option>臺北市</option>
+                <option>新北市</option>
+                <option>桃園市</option>
+                <option>臺中市</option>
+                <option>臺南市</option>
+                <option>高雄市</option>
+                <option>新竹縣</option>
+                <option>苗栗縣</option>
+                <option>彰化縣</option>
+                <option>南投縣</option>
+                <option>雲林縣</option>
+                <option>嘉義縣</option>
+                <option>屏東縣</option>
+                <option>宜蘭縣</option>
+                <option>花蓮縣</option>
+                <option>臺東縣</option>
+                <option>澎湖縣</option>
+            </select>
             <button class="btn btn-lg btn-primary btn-block" type="submit">申請帳號</button>
         </form>
     </div>
+    <script>
+        $(document).ready(function() {
+            $("#login_btn").click(function() {
+                var loginurl = "http://140.115.87.204:8000/Demo/WhoamI/";
+                var username = document.getElementById('inputUsername').value;
+                var name = document.getElementById('inputName').value;
+                var password = document.getElementById('Password').value;
+                $.post(loginurl, {
+                        uid: username,
+                        name: name,
+                        psw: password,
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-
+                    },
+                    function(data, status) {
+                        console.log(data);
+                        if (data === "") {
+                            unescape(data);
+                            alert("帳號密碼錯誤")
+                        } else {
+                            unescape(data);
+                            var login = JSON.parse(data);
+                            console.log(login[0][1]);
+                        }
+                    });
+            });
+        });
+    </script>
 </body>
 
 </html>
