@@ -70,21 +70,8 @@ h3 {
     margin-left: 10px;
 }
 
-.table {
-    width: 950px;
-    margin: auto;
-}
-
-.table>thead>tr>th {
-    text-align: center;
-}
-
-.table>tbody>tr>td {
-    text-align: center;
-}
-
-.table>tbody>tr>td {
-    vertical-align: middle;
+.bootstrap-table {
+    margin-top: 50px;
 }
 
 footer {

@@ -23,11 +23,13 @@
         <div class="form-signin">
             <a href="index.html"><img src="img/indexheader.jpg"></a>
             <label for="inputUsername" class="sr-only">Username</label>
-            <input type="text" id="inputUsername" class="form-control" placeholder="帳號" required="" autofocus="">
-            <label for="inputName" class="sr-only">Name</label>
-            <input type="text" id="inputName" class="form-control" placeholder="姓名" required="" autofocus="">
+            <input type="text" id="inputUsername" class="form-control" placeholder="帳號（僅限英文字母與數字3~10）" title="帳號（僅限英文字母與數字3~10）" required="" autofocus="">
+            <div class="has-error">
+                <label for="inputName" class="sr-only">Name</label>
+                <input type="text" id="inputName" class="form-control" placeholder="姓名" required="" autofocus="">
+            </div>
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="密碼" required="">
+            <input type="password" id="inputError1" class="form-control" placeholder="密碼（僅限英文字母與數字3~10）" title="帳號（僅限英文字母與數字3~10）" required="">
             <label for="inputArea" class="sr-only">Area</label>
             <select id="inputArea" placeholder="居住地區" class="form-control">
                 <option value="2">臺北市</option>
@@ -60,6 +62,7 @@
         $(document).ready(function() {
             $("#login_btn").click(function() {
                 var enrollurl = "http://140.115.87.204:8000/Demo/enroll/";
+                var checkRE = /[A-Za-z0-9]{3,10}/;
                 var username = document.getElementById('inputUsername').value;
                 var name = document.getElementById('inputName').value;
                 var password = document.getElementById('inputPassword').value;
@@ -69,7 +72,6 @@
                         name: name,
                         psw: password,
                         area: area
-
                     },
                     function(data, status) {
                         if (data === "[]") {
