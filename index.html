@@ -148,7 +148,7 @@
                                         m_p: getdata.result[i][4],
                                         l_p: getdata.result[i][5],
                                         avg_p: getdata.result[i][6],
-                                        link: "<a class='btn btn-primary btn-xs' href='" + getdata.result[i][0] + "' role='button'>比價去</a>"
+                                        link: "<a class='btn btn-primary btn-xs' href='vegetable.html?vid=" + getdata.result[i][0] + "&aid=" + getdata.result[i][7] + "' role='button'>比價去</a>"
                                     });
                                 }
                                 return data;
@@ -157,21 +157,21 @@
                                 columns: [ //欄位設定
                                     {
                                         field: 'id',
-                                        title: '蔬菜代號',
+                                        title: '作物代號',
                                         align: 'center',
                                         width: 80,
                                         visible: true,
                                         sortable: true
                                     }, {
                                         field: 'name',
-                                        title: '蔬果名稱',
+                                        title: '作物名稱',
                                         align: 'center',
                                         width: 240,
                                         visible: true,
                                         sortable: true
                                     }, {
                                         field: 'area',
-                                        title: '區域',
+                                        title: '市場',
                                         align: 'center',
                                         width: 120,
                                         visible: true,
@@ -206,7 +206,7 @@
                                         sortable: true
                                     }, {
                                         field: 'link',
-                                        title: '',
+                                        title: '蔬菜頁面',
                                         align: 'center',
                                         width: 100,
                                         visible: true
@@ -220,6 +220,7 @@
                                 pagination: true, //使否要分頁
 
                                 //可於ToolBar上顯示的按鈕
+                                showColumns: true,
                                 search: true, //查詢
                                 onPageChange: function(currentPage, pageSize) {},
                                 pageSize: 15, //一頁顯示幾筆

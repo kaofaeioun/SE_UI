@@ -9,12 +9,13 @@
     <meta name="author" content="">
     <meta property="og.title" content="TsaiBeBar">
 
-    <title>水蓮</title>
+    <title id="title"></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/vegetable.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <style>
         #content>#right>.dose>.dosesingle,
         #content>#center>.dose>.dosesingle,
@@ -35,32 +36,73 @@
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                          <span class="sr-only">Toggle navigation</span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                        </button>
+                                  <span class="sr-only">Toggle navigation</span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                </button>
                             <a class="navbar-brand" href="index.html">菜比吧</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Dashboard</a></li>
-                                <li><a href="#">Settings</a></li>
-                                <li><a href="#">Profile</a></li>
-                                <li>
-                                    <form class="navbar-form navbar-right">
-                                        <input type="text" class="form-control" placeholder="輸入菜名...">
-                                        <button type="submit" class="btn btn-info">站內搜尋</button>
-                                    </form>
-                                </li>
-                                <li><a href="login.html">登入/註冊</a></li>
+                                <li><a href="enroll.html">會員註冊</a></li>
+                                <li><a role="button" data-toggle="modal" data-target="#exampleModal">會員登入</a></li>
                             </ul>
-
                         </div>
                     </div>
                 </nav>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">歡迎回來！</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginform">
+                            <div class="form-group">
+                                <label for="text" class="control-label">帳號</label>
+                                <input type="text" class="form-control" id="login-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label">密碼</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" form="loginform" id="login_btn">登入</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $("#login_btn").click(function() {
+                    var loginurl = "http://140.115.87.204:8000/Demo/WhoamI/";
+                    var username = document.getElementById('login-name').value;
+                    var password = document.getElementById('password').value;
+                    $.post(loginurl, {
+                            uid: username,
+                            psw: password
+                        },
+                        function(data, status) {
+                            console.log(data);
+                            if (data === "") {
+                                unescape(data);
+                                alert("帳號密碼錯誤")
+                            } else {
+                                unescape(data);
+                                var login = JSON.parse(data);
+                                console.log(login[0][1]);
+                            }
+                        });
+                });
+            });
+        </script>
 
         <!-- Marketing messaging and featurettes
     ================================================== -->
@@ -71,12 +113,13 @@
             <div class="row title">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-4">
-                    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="250">
+                    <img id="vegetable-img" alt="http://140.115.87.204/vegetable/img/00000.jpg" width="250" height="250">
                 </div>
-                <div class="col-lg-2">
-                    <h2 class="featurette-heading">水蓮</br>
+                <div class="col-lg-4">
+                    <h2 class="featurette-heading" id="titlename">
+                        </br>
                     </h2>
-                    <h2><span class="text-muted">北區</span></h2>
+                    <h2><span class="text-muted" id="area"></span></h2>
                 </div>
                 <div class="col-lg-2">
                     <button type="button" class="btn btn-default btn-lg" id="track">
@@ -90,22 +133,71 @@
                 <div class="col-lg-1"></div>
                 <div class="col-lg-4">
                     <h2>
-                        <p>平均</p>76.3元</h2>
+                        <p id="avg_price">
+                    </h2>
                 </div>
                 <div class="col-lg-2">
                     <h3>
-                        <p>上價</p>83.3元</h3>
+                        <p id="top_price">
+                    </h3>
                 </div>
                 <div class="col-lg-2">
                     <h3>
-                        <p>中價</p>77.6元</h3>
+                        <p id="mid_price">
+                    </h3>
                 </div>
                 <div class="col-lg-2">
                     <h3>
-                        <p>下價</p>65.6元</h3>
+                        <p id="low_price">
+                    </h3>
                 </div>
 
             </div>
+            <script>
+                $(document).ready(function() {
+
+                    function getUrlVars() {
+                        var vars = [],
+                            hash;
+                        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                        for (var i = 0; i < hashes.length; i++) {
+                            hash = hashes[i].split('=');
+                            vars.push(hash[0]);
+                            vars[hash[0]] = hash[1];
+                        }
+                        return vars;
+                    }
+
+                    function getRawData(getdata) {
+                        var Today = new Date();
+                        var day = Today.getDate();
+                        var sourceurl = "http://140.115.87.204:8000/Demo/search/";
+                        var xhr = new XMLHttpRequest();
+                        var senddata = "vid=" + getUrlVars().vid + "&aid=" + getUrlVars().aid + "&today=" + day;
+                        //console.log(senddata);
+                        xhr.open("POST", sourceurl);
+                        //Send the proper header information along with the request
+                        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        xhr.send(senddata);
+                        xhr.onload = function() {
+                            getdata = JSON.parse(xhr.responseText);
+                            //console.log(getdata);
+                            $("#title").append(getdata.result[0][1]);
+                            $("#titlename").append(getdata.result[0][1]);
+                            var img = document.getElementById("vegetable-img");
+                            img.setAttribute("src", getdata.result[0][2]);
+                            $("#area").append(getdata.result[0][3]);
+                            $("#top_price").append("上價</p>" + getdata.result[0][4] + "元");
+                            $("#mid_price").append("中價</p>" + getdata.result[0][5] + "元");
+                            $("#low_price").append("下價</p>" + getdata.result[0][6] + "元");
+                            $("#avg_price").append("平均</p>" + getdata.result[0][7] + "元");
+                        }
+                    }
+                    getRawData();
+
+
+                });
+            </script>
             <!-- /.row -->
             <div class="table-responsive">
                 <table class="table table-striped">
