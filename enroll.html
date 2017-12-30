@@ -12,74 +12,94 @@
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/login.css" rel="stylesheet">
+    <link href="css/enroll.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+    <script src="js/enroll.js"></script>
 </head>
 
 <body>
     <div class="container">
-
-        <div class="form-signin">
+        <form class="form-signin" method="POST">
             <a href="index.html"><img src="img/indexheader.jpg"></a>
-            <label for="inputUsername" class="sr-only">Username</label>
-            <input type="text" id="inputUsername" class="form-control" placeholder="帳號（僅限英文字母與數字3~10）" title="帳號（僅限英文字母與數字3~10）" required="" autofocus="">
-            <div class="has-error">
-                <label for="inputName" class="sr-only">Name</label>
-                <input type="text" id="inputName" class="form-control" placeholder="姓名" required="" autofocus="">
+            <div id="uidDiv">
+                <label for="inputUid" class="sr-only">Uid</label>
+                <input type="text" id="inputUid" class="form-control" onblur="checkUid(this)" placeholder="帳號（僅限英文字母與數字3~10個字）" required="" autofocus="">
             </div>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputError1" class="form-control" placeholder="密碼（僅限英文字母與數字3~10）" title="帳號（僅限英文字母與數字3~10）" required="">
-            <label for="inputArea" class="sr-only">Area</label>
-            <select id="inputArea" placeholder="居住地區" class="form-control">
-                <option value="2">臺北市</option>
-                <option value="3">新北市</option>
-                <option value="4">基隆市</option>
-                <option value="5">桃園市</option>
-                <option value="6">新竹縣</option>
-                <option value="7">新竹市</option>
-                <option value="9">苗栗縣</option>
-                <option value="10">臺中市</option>
-                <option value="11">彰化縣</option>
-                <option value="12">南投縣</option>
-                <option value="14">雲林縣</option>
-                <option value="15">嘉義縣</option>
-                <option value="16">嘉義市</option>
-                <option value="17">臺南市</option>
-                <option value="18">高雄市</option>
-                <option value="19">屏東縣</option>
-                <option value="21">宜蘭縣</option>
-                <option value="22">花蓮縣</option>
-                <option value="23">臺東縣</option>
-                <option value="25">澎湖縣</option>
-                <option value="26">金門縣</option>
-                <option value="27">連江縣</option>
-            </select>
-            <button class="btn btn-lg btn-primary btn-block" id="login_btn">申請帳號</button>
-        </div>
+            <div id="nameDiv">
+                <label for="inputName" class="sr-only">Name</label>
+                <input type="text" id="inputName" class="form-control" onblur="checkName(this)" required="" placeholder="姓名">
+            </div>
+            <div id="passwordDiv">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" onblur="checkPassword(this)" required="" placeholder="密碼（僅限英文字母與數字3~10個字）">
+            </div>
+            <div id="checkDiv">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputCheck" class="form-control" onblur="doubleCheck(this)" required="" placeholder="確認密碼（請重新輸入密碼）">
+            </div>
+            <div id="selectDiv">
+                <label for="inputArea" class="sr-only">Area</label>
+                <select id="inputArea" placeholder="居住地區" onchange="checkSelect(this)" class="form-control">
+                    <option value="" selected="selected">請選擇居住地</option>
+                    <option value="2">臺北市</option>
+                    <option value="3">新北市</option>
+                    <option value="4">基隆市</option>
+                    <option value="5">桃園市</option>
+                    <option value="6">新竹縣</option>
+                    <option value="7">新竹市</option>
+                    <option value="9">苗栗縣</option>
+                    <option value="10">臺中市</option>
+                    <option value="11">彰化縣</option>
+                    <option value="12">南投縣</option>
+                    <option value="14">雲林縣</option>
+                    <option value="15">嘉義縣</option>
+                    <option value="16">嘉義市</option>
+                    <option value="17">臺南市</option>
+                    <option value="18">高雄市</option>
+                    <option value="19">屏東縣</option>
+                    <option value="21">宜蘭縣</option>
+                    <option value="22">花蓮縣</option>
+                    <option value="23">臺東縣</option>
+                    <option value="25">澎湖縣</option>
+                    <option value="26">金門縣</option>
+                    <option value="27">連江縣</option>
+                </select>
+            </div>
+        </form>
+        <button class="btn btn-lg btn-primary btn-block" id="login_btn">申請帳號</button>
     </div>
     <script>
         $(document).ready(function() {
             $("#login_btn").click(function() {
-                var enrollurl = "http://140.115.87.204:8000/Demo/enroll/";
-                var checkRE = /[A-Za-z0-9]{3,10}/;
-                var username = document.getElementById('inputUsername').value;
-                var name = document.getElementById('inputName').value;
-                var password = document.getElementById('inputPassword').value;
-                var area = document.getElementById('inputArea').value;
-                $.post(enrollurl, {
-                        uid: username,
+                var uid = document.getElementById("uidHelp");
+                var name = document.getElementById("nameHelp");
+                var password = document.getElementById("passwordHelp");
+                var check = document.getElementById("checkHelp");
+                var select = document.getElementById("selectHelp");
+                if (uid || name || password || check || select) {} else {
+                    var enrollurl = "http://140.115.87.204:8000/Demo/enroll/";
+                    var uid = document.getElementById('inputUid').value;
+                    var name = document.getElementById('inputName').value;
+                    var password = document.getElementById('inputPassword').value;
+                    var area = document.getElementById('inputArea').value;
+                    $.post(enrollurl, {
+                        uid: uid,
                         name: name,
                         psw: password,
                         area: area
-                    },
-                    function(data, status) {
-                        if (data === "[]") {
-                            unescape(data);
+                    }, function(data, status) {
+                        var enrollResponse = JSON.parse(data);
+                        console.log(enrollResponse);
+                        if (enrollResponse === "success") {
                             alert("註冊成功");
                             window.location.assign("index.html");
-                        } else {}
+                        } else if (enrollResponse === "fail") {
+                            alert("註冊失敗已有相同帳號，請重新註冊");
+                            window.location.assign("enroll.html");
+                        }
                     });
+                }
+
             });
         });
     </script>

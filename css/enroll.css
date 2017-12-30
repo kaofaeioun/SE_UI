@@ -39,26 +39,34 @@ body {
     z-index: 2;
 }
 
-.form-signin #inputUsername {
+#inputUid {
     margin-top: 20px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.form-signin #inputName {
+#inputName {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
-.form-signin input[type="password"] {
+#inputPassword {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#inputCheck {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
 .form-signin select {
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 

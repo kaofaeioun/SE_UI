@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="css/index.css">
     <!--<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="dist/js/bootstrap.min.js"></script>
     <script src="BT-dist/bootstrap-table.min.js"></script>
     <script src="BT-dist/locale/bootstrap-table-zh-TW.min.js"></script>
     <style>
@@ -134,7 +133,7 @@
                         xhr.onload = function() {
                             //console.log(xhr.responseText);
                             getdata = JSON.parse(xhr.responseText);
-                            unescape(xhr.responseText);
+                            //unescape(xhr.responseText);
                             //console.log(xhr.responseText);
                             //console.log(getdata.result);
                             function getData() {
