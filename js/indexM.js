@@ -24,8 +24,8 @@ $(document).ready(function() {
                         m_p: getdata.result[i][4],
                         l_p: getdata.result[i][5],
                         avg_p: getdata.result[i][6],
-                        link: "<a class='btn btn-primary btn-xs' href='vegetable.html?vid=" + getdata.result[i][0] + "&aid=" + getdata.result[i][7] + "' role='button'>比價去</a>"
-
+                        link: "<a class='btn btn-primary btn-xs' href='vegetable.html?vid=" + getdata.result[i][0] + "&aid=" + getdata.result[i][7] + "' role='button'>比價去</a>",
+                        mlink: "<a class='btn btn-warning btn-xs' href='manage.html?vid=" + getdata.result[i][0] + "&aid=" + getdata.result[i][7] + "' role='button'>管理</a>",
                     });
                 }
                 return data;
@@ -88,6 +88,12 @@ $(document).ready(function() {
                         width: 100,
                         visible: true
 
+                    }, {
+                        field: 'mlink',
+                        title: '管理頁面',
+                        align: 'center',
+                        width: 100,
+                        visible: true
                     }
                 ],
                 classes: 'table',

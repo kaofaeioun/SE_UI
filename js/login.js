@@ -14,7 +14,7 @@ $(document).ready(function() {
                 if (data === "[]") {
                     alert("登入失敗，帳號密碼錯誤");
                 } else {
-                    console.log(getUser[0][1]);
+                    sessionStorage.setItem('uid', getUser[0][0])
                     sessionStorage.setItem('user', getUser[0][1]);
                     sessionStorage.setItem('role', getUser[0][5]);
                     $('#close').trigger("click");
@@ -25,18 +25,17 @@ $(document).ready(function() {
 
     console.log(sessionStorage.user);
     if (sessionStorage.role === "0") {
-        console.log("一般使用者登入");
         document.getElementById("enrollLink").remove();
         document.getElementById("loginLink").remove();
-        $("#navbarTool").append('<li><h3 class="welcomeUser"><span class="label label-info">歡迎回來！' + sessionStorage.user + '</a></li>');
-        $("#navbarTool").append('<li><a href="enroll.html" >管理頁面</a></li>');
+        $("#navbarTool").append('<li><h3 class="welcomeUser"><span class="label label-info">' + sessionStorage.user + '</span></a></li>');
+        $("#navbarTool").append('<li><a href="dashboard.html?uid=' + sessionStorage.uid + '" >個人頁面</a></li>');
         $("#navbarTool").append('<li><a href="javascript:window.location.reload()" onclick="logout();" id="logoutLink">登出</a></li>');
     } else if (sessionStorage.role === "1") {
-        console.log("管理員登入");
+        document.getElementById("mainJavascript").remove();
         document.getElementById("enrollLink").remove();
         document.getElementById("loginLink").remove();
-        $("#navbarTool").append('<li><h3 class="welcomeUser"><span class="label label-primary">歡迎回來！' + sessionStorage.user + '</span></h3></li>');
-        $("#navbarTool").append('<li><a href="enroll.html" >管理頁面</a></li>');
+        $("#htmlHead").append('<script src="js/indexM.js"></script>')
+        $("#navbarTool").append('<li><h3 class="welcomeManager"><span class="label label-primary">' + sessionStorage.user + '</span></h3></li>');
         $("#navbarTool").append('<li><a href="javascript:window.location.reload()" onclick="logout()" id="logoutLink">登出</a></li>');
     } else {}
 });
