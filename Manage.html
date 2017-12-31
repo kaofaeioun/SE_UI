@@ -23,6 +23,7 @@
     <script src="js/manage.js"></script>
     <script src="js/login.js"></script>
     <script src="js/loading.js"></script>
+    <script src="js/check.js"></script>
     <style>
         #content>#right>.dose>.dosesingle,
         #content>#center>.dose>.dosesingle,
@@ -48,7 +49,7 @@
                                   <span class="icon-bar"></span>
                                   <span class="icon-bar"></span>
                                 </button>
-                            <a class="navbar-brand" href="index.html">菜比吧</a>
+                            <a class="navbar-brand" href="index.manage.html">菜比吧</a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right" id="navbarTool">
@@ -128,42 +129,29 @@
                     </h2>
                     <h2><span class="text-muted" id="area"></span></h2>
                 </div>
-                <div class="col-lg-2">
-                    <button type="button" class="btn btn-default btn-lg" id="track">
-                        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 追蹤
-                    </button>
-                </div>
-
-
             </div>
-            <div class="row">
-                <div class="col-lg-1"></div>
+            <div class="row price">
+                <div class="col-lg-2"></div>
                 <div class="col-lg-4">
-                    <ul>
-                        <li>
-                            <h2>
-                                <p id="avg_price">
-                            </h2>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-success" id="avg_price">
                         </li>
-                        <li>
-                            <h3>
-                                <p id="top_price">
-                            </h3>
+                        <li class="list-group-item" id="top_price">
                         </li>
-                        <li>
-                            <h3>
-                                <p id="mid_price">
-                            </h3>
+                        <li class="list-group-item" id="mid_price">
                         </li>
-                        <li>
-                            <h3>
-                                <p id="low_price">
-                            </h3>
+                        <li class="list-group-item" id="low_price">
                         </li>
                     </ul>
+                </div>
+                <div class="col-lg-4" id="reportform">
 
                 </div>
-
+                <div class="col-lg-1" id="track">
+                    <button type="button" class="btn btn-primary btn-lg" id="untrackBtn">
+                                <span class="" aria-hidden="true"></span>取消追蹤
+                            </button>
+                </div>
             </div>
             <table id="report_table" class="table-striped table-hover"></table>
             <script>

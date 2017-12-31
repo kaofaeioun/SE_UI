@@ -5,3 +5,37 @@
 #area {
     text-align: left;
 }
+
+.form-report {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-report .form-report-heading,
+.form-report .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-report .checkbox {
+    font-weight: normal;
+}
+
+.form-report .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-report .form-control:focus {
+    z-index: 2;
+}
+
+.price {
+    width: 780px;
+    margin: auto;
+}

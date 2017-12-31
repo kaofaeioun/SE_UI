@@ -14,7 +14,6 @@ $(document).ready(function() {
 
     }
 
-
     function getRawData(getdata) { //取得該作物資料
         var Today = new Date();
         var day = Today.getDate();
@@ -38,10 +37,10 @@ $(document).ready(function() {
                     img.setAttribute("src", getdata.result[0][2]);
                 }
                 $("#area").append(getdata.result[0][3]);
-                $("#top_price").append("上價</p>" + getdata.result[0][4] + "元");
-                $("#mid_price").append("中價</p>" + getdata.result[0][5] + "元");
-                $("#low_price").append("下價</p>" + getdata.result[0][6] + "元");
-                $("#avg_price").append("平均</p>" + getdata.result[0][7] + "元");
+                $("#top_price").append("<h5><p>上價 " + getdata.result[0][4] + "元</p></h5>");
+                $("#mid_price").append("<h5><p>中價 " + getdata.result[0][5] + "元</p></h5>");
+                $("#low_price").append("<h5><p>下價 " + getdata.result[0][6] + "元</p></h5>");
+                $("#avg_price").append("<h4><p>平均 " + getdata.result[0][7] + "元</p></h4>");
             }
         }
     }
@@ -66,13 +65,15 @@ $(document).ready(function() {
                 function getData() {
                     var data = [];
                     for (var i = 0; i < getdata.result.length; i++) {
-                        data.push({
-                            report_time: getdata.result[i][0],
-                            reporter: getdata.result[i][1],
-                            area: getdata.result[i][2],
-                            price: getdata.result[i][3],
-                            manage: "<a class='btn btn-danger btn-xs' href='vegetable.html?vid=" + getdata.result[i][0] + "&aid=" + getdata.result[i][7] + "' role='button'>隱藏</a>",
-                        });
+                        if (getdata.result[i][4] == 1) {
+                            data.push({
+                                report_time: getdata.result[i][0],
+                                reporter: getdata.result[i][1],
+                                area: getdata.result[i][2],
+                                price: getdata.result[i][3],
+                                manage: "<a class='btn btn-danger btn-xs' onclick='abortData(" + getdata.result[i][5] + ")' role='button'>隱藏</a>",
+                            });
+                        }
                     }
                     return data;
                 }
@@ -144,19 +145,6 @@ $(document).ready(function() {
         xhr.send(sendquery);
     }
 
-    //console.time('query');
-    /*if (urlVars.vid != "" && urlVars.aid != "") {
-        console.time("ttt");
-        console.log("做");
-        getReportData();
-        getRawData();
-        console.timeEnd("ttt");
-    } else {
-
-    }*/
-    //console.timeEnd('query');
-
-
 
     var delay = function(s) {
         return new Promise(function(resolve, reject) {
@@ -173,3 +161,21 @@ $(document).ready(function() {
         getRawData(); // 顯示 3
     });
 });
+
+function abortData(tid) {
+    var sourceurl = "http://140.115.87.204:8000/Demo/abort_report/?tid=" + tid;
+    var xhr = new XMLHttpRequest();
+    getdata = new Object();
+    xhr.open('get', sourceurl);
+    xhr.send(null);
+    xhr.onload = function() {
+        getdata = JSON.parse(xhr.responseText);
+        //unescape(xhr.responseText);
+        //console.log(xhr.responseText);
+        //console.log(getdata.result);
+        if (getdata.result == "success") {
+            alert("已隱藏資料");
+            window.location.reload();
+        }
+    }
+}
