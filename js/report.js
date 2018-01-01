@@ -18,7 +18,9 @@ $(document).ready(function() {
         var vid = urlVars.vid;
         var aid = sessionStorage.area;
         var price = document.getElementById('report_price').value;
-        if (price == "") {
+        if (price <= 0) {
+            alert("請輸入正整數喔！");
+        } else if (price == "") {
             alert("請輸入價錢喔！");
         } else {
             var xhr = new XMLHttpRequest();

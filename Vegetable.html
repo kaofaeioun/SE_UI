@@ -99,21 +99,21 @@
         <div class="container marketing">
 
             <div class="row title">
-                <div class="col-lg-1"></div>
                 <div class="col-lg-4">
                     <img id="vegetable-img" alt="" width="250" height="250">
                 </div>
-                <div class="col-lg-4">
-                    <h2 class="featurette-heading" id="titlename">
+                <div class="col-lg-2">
+                    <h2 class="" id="titlename">
                         </br>
                     </h2>
-                    <h2><span class="text-muted" id="area"></span></h2>
+                    <h2><span class="text" id="area"></span></h2>
+                    <div class="col-lg-1" id="track">
+                        <button type="button" class="btn btn-primary btn-lg" id="untrackBtn">
+                                <span class="" aria-hidden="true"></span>取消追蹤
+                            </button>
+                    </div>
                 </div>
-
-            </div>
-            <div class="row price">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-success" id="avg_price">
                         </li>
@@ -128,21 +128,11 @@
                 <div class="col-lg-4" id="reportform">
 
                 </div>
-                <div class="col-lg-1" id="track">
-                    <button type="button" class="btn btn-primary btn-lg" id="untrackBtn">
-                            <span class="" aria-hidden="true"></span>取消追蹤
-                        </button>
-                </div>
+
             </div>
             <table id="report_table" class="table-striped table-hover"></table>
-            <script>
-            </script>
 
             <!-- FOOTER -->
-            <footer>
-                <p class="pull-right"><a href="#">Back to top</a></p>
-                <p>© 2016 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-            </footer>
             <button type="button" id="Loading" hidden="hidden" onclick="waitingDialog.show('正在載入資料');setTimeout(function () {waitingDialog.hide();}, 1000);"></button>
         </div>
         <!-- /.container -->

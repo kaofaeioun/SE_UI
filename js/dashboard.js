@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     function getTrackData(getdata) {
         var Today = new Date();
-        var day = Today.getDate();
+        var day = Today.getFullYear() + "-0" + (Today.getMonth() + 1) + "-0" + Today.getDate();
         var sourceurl = "http://140.115.87.204:8000/Demo/get_follow/";
         var xhr = new XMLHttpRequest();
         var senddata = "uid=" + sessionStorage.uid + "&today=" + day;;

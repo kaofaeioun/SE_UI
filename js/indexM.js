@@ -1,7 +1,7 @@
 $(document).ready(function() {
     function getRawData(getdata) {
         var Today = new Date();
-        var day = Today.getDate();
+        var day = Today.getFullYear() + "-0" + (Today.getMonth() + 1) + "-0" + Today.getDate();
         var sourceurl = "http://140.115.87.204:8000/Demo/get_vegetable/?today=" + day;
         var xhr = new XMLHttpRequest();
         getdata = new Object();

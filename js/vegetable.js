@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     function getRawData(getdata) { //取得該作物資料
         var Today = new Date();
-        var day = Today.getDate();
+        var day = Today.getFullYear() + "-0" + (Today.getMonth() + 1) + "-0" + Today.getDate();
         var sourceurl = "http://140.115.87.204:8000/Demo/search/";
         var xhr = new XMLHttpRequest();
         var senddata = "vid=" + urlVars.vid + "&aid=" + urlVars.aid + "&today=" + day;
