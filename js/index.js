@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $('#Loading').trigger("click");
+
     function getRawData(getdata) {
         var Today = new Date();
         var day = Today.getFullYear() + "-0" + (Today.getMonth() + 1) + "-0" + Today.getDate();
@@ -120,5 +122,14 @@ $(document).ready(function() {
 
     }
     getRawData();
-
+    var delay = function(s) {
+        return new Promise(function(resolve, reject) {
+            setTimeout(resolve, s);
+        });
+    };
+    delay().then(function() {
+        return delay(250); // 延遲ㄧ秒
+    }).then(function() {
+        getRawData(); // 延遲一秒
+    });
 });
